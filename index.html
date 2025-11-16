@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Voice Call - P2P</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>Secure Voice Call</h1>
+            <p class="subtitle">Peer-to-peer encrypted voice communication</p>
+        </header>
+        
+        <div id="setup-screen">
+            <div class="card">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" maxlength="20" />
+                </div>
+                
+                <button id="create-room-btn" class="btn-success">Create New Call Room</button>
+                <button id="join-room-btn">Join Existing Call</button>
+            </div>
+            
+            <div class="instructions">
+                <h3>How to use:</h3>
+                <ol>
+                    <li>Create a new call room to generate a 4-digit code</li>
+                    <li>Share the code with up to 4 other people</li>
+                    <li>Join an existing call by entering the code</li>
+                    <li>Maximum 5 participants per call</li>
+                    <li>End the call anytime using the End Call button</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div id="room-screen" class="hidden">
+            <div class="card">
+                <h2>Call Room</h2>
+                <p>Share this code with others to join the call</p>
+                
+                <div class="code-display" id="room-code">0000</div>
+                
+                <div class="status waiting" id="connection-status">
+                    <span class="loading"></span> Waiting for participants...
+                </div>
+                
+                <button id="cancel-room-btn" class="btn-warning hidden" onclick="cancelRoom()">Cancel Room</button>
+                
+                <div class="participants-list" id="participants-list">
+                    <!-- Participants will be added here dynamically -->
+                </div>
+                
+                <div class="audio-container">
+                    <div class="avatar">🎤</div>
+                </div>
+                
+                <div class="call-controls hidden">
+                    <div class="call-timer" id="call-timer">00:00</div>
+                    <button id="mute-btn" class="btn-warning">Mute</button>
+                    <button id="end-call-btn" class="btn-danger">End Call</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="join-screen" class="hidden">
+            <div class="card">
+                <h2>Join Call Room</h2>
+                <p>Enter the 4-digit code to join an active call</p>
+                
+                <div class="form-group">
+                    <label for="join-code">Room Code</label>
+                    <input type="text" id="join-code" placeholder="Enter 4-digit code" maxlength="4" pattern="[0-9]{4}" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="join-name">Your Name</label>
+                    <input type="text" id="join-name" placeholder="Enter your name" maxlength="20" />
+                </div>
+                
+                <button id="join-submit-btn">Join Call</button>
+                <button id="back-to-setup">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

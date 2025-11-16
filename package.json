@@ -1,0 +1,13 @@
+{
+  "name": "secure-voice-call",
+  "version": "1.0.0",
+  "description": "Peer-to-peer encrypted voice communication",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build process needed'",
+    "deploy": "echo 'Deploy to Netlify'"
+  },
+  "keywords": ["webrtc", "voice-call", "p2p"],
+  "author": "Your Name",
+  "license": "MIT"
+}
